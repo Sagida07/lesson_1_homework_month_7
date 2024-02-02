@@ -3,14 +3,17 @@ package com.example.lesson_1_homework_month_7.door
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.example.lesson_1_homework_month_7.databinding.ItemDoorBinding
+import com.example.lesson_1_homework_month_7.resp.doorModel.DoorModel
 
-class DoorsAdapter : Adapter<DoorsAdapter.DoorsViewHolder>() {
+class DoorsAdapter : ListAdapter<DoorModel.Data, DoorsAdapter.DoorViewHolder>(DoorDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoorsViewHolder {
-        return DoorsViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoorViewHolder {
+        return DoorViewHolder(
             ItemDoorBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -19,16 +22,12 @@ class DoorsAdapter : Adapter<DoorsAdapter.DoorsViewHolder>() {
         )
     }
 
-    override fun getItemCount(): Int {
-        return 50
+    override fun onBindViewHolder(holder: DoorViewHolder, position: Int) {
+        holder.bind(getItem(position))
     }
 
-    override fun onBindViewHolder(holder: DoorsViewHolder, position: Int) {
-        holder.toBind()
-    }
-
-    inner class DoorsViewHolder(private val binding: ItemDoorBinding) : ViewHolder(binding.root) {
-        fun toBind() {
+    class DoorViewHolder(private val binding: ItemDoorBinding) : ViewHolder(binding.root) {
+        fun bind(position: DoorModel.Data) {
             itemView.setOnClickListener {
                 if (binding.imgDoor.visibility == View.GONE) {
                     binding.imgDoor.visibility =
@@ -38,6 +37,16 @@ class DoorsAdapter : Adapter<DoorsAdapter.DoorsViewHolder>() {
                     binding.btnPlay.visibility = View.GONE
                 }
             }
+            binding.tvNameDoor.text = position.name
+            Glide.with(binding.imgDoor).load(position.snapshot).into(binding.imgDoor)
         }
+    }
+
+    class DoorDiffCallback : DiffUtil.ItemCallback<DoorModel.Data>() {
+        override fun areContentsTheSame(oldItem: DoorModel.Data, newItem: DoorModel.Data) =
+            oldItem.id == newItem.id
+
+        override fun areItemsTheSame(oldItem: DoorModel.Data, newItem: DoorModel.Data) =
+            oldItem == newItem
     }
 }

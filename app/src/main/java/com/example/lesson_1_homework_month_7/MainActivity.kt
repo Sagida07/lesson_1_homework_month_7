@@ -5,7 +5,9 @@ import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.example.lesson_1_homework_month_7.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -16,17 +18,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val adapter = Adapter(this)
-        binding.viewPager.adapter = adapter
+        binding.viewPager2.adapter = adapter
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                binding.viewPager.currentItem = tab!!.position
+                binding.viewPager2.currentItem = tab!!.position
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
         })
-        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position))

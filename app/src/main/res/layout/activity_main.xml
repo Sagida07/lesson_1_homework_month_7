@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_my_home"
         app:tabIndicatorColor="#C33EBAF3"
-        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorFullWidth="false"
         app:tabTextColor="#333333">
 
         <com.google.android.material.tabs.TabItem
