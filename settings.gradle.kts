@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "lesson_1_homework_month_7"
 include(":app")
- 
+include(":smarthome")
+include(":smarthome")

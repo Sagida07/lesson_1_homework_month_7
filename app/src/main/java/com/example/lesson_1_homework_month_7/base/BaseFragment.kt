@@ -1,16 +1,12 @@
 package com.example.lesson_1_homework_month_7.base
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.LiveData
-import com.example.lesson_1_homework_month_7.R
-import com.example.lesson_1_homework_month_7.data.Resource
-import com.example.lesson_1_homework_month_7.resp.utils.showToast
+import com.bumptech.glide.load.engine.Resource
+import com.example.lesson_1_homework_month_7.utils.showToast
 
-open class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment() {
+
     fun <T> LiveData<Resource<T>>.stateHandler(
         success: (data: T) -> Unit,
         state: ((res: Resource<T>) -> Unit)? = null
@@ -22,9 +18,7 @@ open class BaseFragment : Fragment() {
                     this@BaseFragment.showToast(res.message!!)
                 }
 
-                is Resource.Loading -> {
-                }
-
+                is Resource.Loading -> {}
                 is Resource.Success -> {
                     if (res.data != null) {
                         success(res.data)
