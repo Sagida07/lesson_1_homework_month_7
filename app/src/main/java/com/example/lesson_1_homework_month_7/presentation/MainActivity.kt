@@ -1,7 +1,7 @@
 package com.example.lesson_1_homework_month_7.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.lesson_1_homework_month_7.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout

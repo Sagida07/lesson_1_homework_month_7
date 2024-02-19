@@ -1,12 +1,16 @@
 package com.example.lesson_1_homework_month_7.di
 
-import com.example.lesson_1_homework_month_7.data.remote.ApiService
-import com.example.lesson_1_homework_month_7.data.repository.Repository
-import com.example.lesson_1_homework_month_7.domain.repositories.CamerasRepository
-import com.example.lesson_1_homework_month_7.domain.repositories.DoorsRepository
+import android.content.Context
+import androidx.room.Room
+import com.example.hw_1_7.data.local.HomeDatabase
+import com.example.hw_1_7.data.remote.ApiService
+import com.example.hw_1_7.data.repositories.Repository
+import com.example.hw_1_7.domain.repositories.CamerasRepository
+import com.example.hw_1_7.domain.repositories.DoorsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -64,5 +68,18 @@ class AppModule {
         return Repository(apiService)
     }
 
+    @Provides
+    @Singleton
+    fun provideDatabase(
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(
+        context,
+        HomeDatabase::class.java,
+        "home_data"
+    ).allowMainThreadQueries().build()
 
+    @Provides
+    fun provideDao(
+        database: HomeDatabase
+    ) = database.homeDao()
 }

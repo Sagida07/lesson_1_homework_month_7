@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.example.hw_1_7.domain.models.door.DoorModel
 import com.example.lesson_1_homework_month_7.databinding.ItemDoorsBinding
-import com.example.lesson_1_homework_month_7.data.resp.door.DoorModel
 
-class DoorsAdapter():Adapter<DoorsAdapter.DoorsViewHolder>(){
+class DoorsAdapter() : Adapter<DoorsAdapter.DoorsViewHolder>() {
 
     private var list = listOf<DoorModel.Data>()
 
@@ -19,7 +19,13 @@ class DoorsAdapter():Adapter<DoorsAdapter.DoorsViewHolder>(){
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoorsViewHolder {
-        return DoorsViewHolder(ItemDoorsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return DoorsViewHolder(
+            ItemDoorsBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount() = list.size
@@ -43,6 +49,4 @@ class DoorsAdapter():Adapter<DoorsAdapter.DoorsViewHolder>(){
             Glide.with(imgDoor).load(position.snapshot).into(imgDoor)
         }
     }
-
-
 }

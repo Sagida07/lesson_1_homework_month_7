@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/tv_room_name"
-        android:text="Гостинная"
+        android:text="@string/living_room"
         android:textSize="20sp"
         android:layout_marginStart="20dp"
         android:layout_marginVertical="8dp"

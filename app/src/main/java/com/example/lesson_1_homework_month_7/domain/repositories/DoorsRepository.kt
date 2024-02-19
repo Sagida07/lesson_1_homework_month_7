@@ -1,9 +1,9 @@
 package com.example.hw_1_7.domain.repositories
 
-import androidx.lifecycle.LiveData
-import com.example.hw_1_7.data.Resource
+import com.example.hw_1_7.data.utils.Resource
 import com.example.hw_1_7.domain.models.door.DoorModel
+import kotlinx.coroutines.flow.Flow
 
 interface DoorsRepository {
-    fun getDoors():LiveData<Resource<DoorModel>>
+    suspend fun getDoors(): Flow<Resource<DoorModel>>
 }

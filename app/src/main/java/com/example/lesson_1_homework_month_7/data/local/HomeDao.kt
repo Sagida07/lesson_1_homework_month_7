@@ -16,8 +16,8 @@ interface HomeDao {
     fun insertDoorData(model: DoorData)
 
     @Query("SELECT COUNT(*) FROM camera_data")
-    fun getCameraCount():Int
+    fun getCameraCount(): Int
 
     @Query("SELECT COUNT(*) FROM door_data")
-    fun getDoorCount():Int
+    fun getDoorCount(): Int
 }
